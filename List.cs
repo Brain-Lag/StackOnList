@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace StackOnList
 {
+    /// <summary>
+    /// комментарий
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class List<T>
     {
         public Node<T>? Head { get;private set; } 
