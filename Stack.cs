@@ -25,18 +25,7 @@ namespace StackOnList
 
         public Stack(Stack current)
         {
-            //var temp = new Stack(_size);
-            //while (current._count > 0)
-            //{
-            //    int item = current.Pop();
-            //    temp.Push(item);
-            //}
 
-            //while (temp._count > 0)
-            //{
-            //    int item = temp.Pop();
-            //    Push(item);
-            //}
             _list = new List<int>();
             _size = current._size;
             _count = current._count;
