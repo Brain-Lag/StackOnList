@@ -25,20 +25,37 @@ namespace StackOnList
 
         public Stack(Stack current)
         {
+            //var temp = new Stack(_size);
+            //while (current._count > 0)
+            //{
+            //    int item = current.Pop();
+            //    temp.Push(item);
+            //}
+
+            //while (temp._count > 0)
+            //{
+            //    int item = temp.Pop();
+            //    Push(item);
+            //}
             _list = new List<int>();
             _size = current._size;
-
-            var temp = new Stack(_size);
-            while (current._count > 0)
+            _count = current._count;
+            _list.Count = current._list.Count;
+            if (current._count == 0)
             {
-                int item = current.Pop();
-                temp.Push(item);
+                return;
             }
-
-            while (temp._count > 0)
+            Node<int> originalHead = current._list.Head;
+            Node<int> newNode = new Node<int>(originalHead.Data);
+            _list.Head = newNode;
+            Node<int> tempHead = _list.Head;
+            originalHead = originalHead.Next;
+            while (originalHead != null)
             {
-                int item = temp.Pop();
-                Push(item);
+                newNode = new Node<int>(originalHead.Data);
+                tempHead.Next = newNode;
+                originalHead = originalHead.Next;
+                tempHead = tempHead.Next;
             }
         }
 
@@ -55,6 +72,7 @@ namespace StackOnList
 
         public int Pop()
         {
+            if (_count == 0) throw new InvalidOperationException("Стэк пуст");
             DecreaseAvgValue(Peek());
             _count--;
             return _list.Remove();

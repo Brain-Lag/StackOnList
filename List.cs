@@ -10,8 +10,8 @@ namespace StackOnList
 
     public class List<T>
     {
-        public Node<T>? Head { get;private set; } 
-        public int Count { get; private set; }
+        public Node<T>? Head { get; set; } 
+        public int Count { get; set; }
 
         public void Add(T item)
         {
