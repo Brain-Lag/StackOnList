@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace StackOnList
 {
-    public class Node<T>
+    public class Node
     {
-        public Node(T data)
-        {
-            Data = data;
-        }
-        public T Data { get; set; }
-        public Node<T>? Next { get; set; }
+        //public Node(int data)
+        //{
+        //    Data = data;
+        //}
+        public dynamic? Data { get; set; }
+        public Node? Next { get; set; }
     }
 }

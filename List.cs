@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StackOnList.Exceptions;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,14 +9,15 @@ using System.Threading.Tasks;
 namespace StackOnList
 {
 
-    public class List<T>
+    public class List
     {
-        public Node<T>? Head { get; set; } 
+        public Node? Head { get; set; } 
         public int Count { get; set; }
 
-        public void Add(T item)
+
+        public void Add(dynamic item)
         {
-            Node<T> node = new Node<T>(item);
+            Node node = new Node { Data = item };
 
             if (Head == null) Head = node;
             else
@@ -26,13 +28,44 @@ namespace StackOnList
             Count++;
         }
 
-        public T Remove()
+        public dynamic Remove()
         {
-            if (Head == null) throw new InvalidOperationException("Стэк пуст");
-            Count--;
-            var current = Head;
+            if (Head == null) throw new ContainerUnderflowException("Стэк пуст");
+            Node current = Head;
             Head = Head.Next;
+            Count--;
             return current.Data;
+        }
+        public dynamic this[int index]
+        {
+            get
+            {
+                if (index < 0 || index >= Count)
+                {
+                    throw new IndexValueException("Значение индекса выходит за рамки хранилища", index);
+                }
+
+                Node current = Head;
+                for (int i = 0; i < index; i++)
+                {
+                    current = current.Next;
+                }
+                return current!.Data;
+            }
+            set
+            {
+                if (index < 0 || index >= Count)
+                {
+                    throw new IndexValueException("Значение индекса выходит за рамки хранилища", index);
+                }
+
+                Node current = Head;
+                for (int i = 0; i <= index; i++)
+                {
+                    current = current!.Next;
+                }
+                current!.Data = value;
+            }
         }
     }
 }
