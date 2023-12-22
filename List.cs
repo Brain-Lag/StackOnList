@@ -60,7 +60,7 @@ namespace StackOnList
                 }
 
                 Node current = Head;
-                for (int i = 0; i <= index; i++)
+                for (int i = 0; i < index; i++)
                 {
                     current = current!.Next;
                 }

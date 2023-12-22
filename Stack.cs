@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace StackOnList
 {
-    class Stack<T> : IEnumerable where T : struct, IComparable
+    class Stack<T> where T : struct, IComparable
     {
         private int _size;
         private List _list;
@@ -20,12 +20,12 @@ namespace StackOnList
         {
             try
             {
+                _size = size;
                 _list = new List();
                 if (_size is <= 0)
                 {
                     throw new ContainerCapacityException("Размер хранилища не может быть <= 0");
                 }
-                _size = size;
             }
             catch (ContainerCapacityException e)
             {
@@ -85,13 +85,13 @@ namespace StackOnList
 
         public void Sort()
         {
-            for(int i = 0; i < Count; ++i)
+            for(int i = 0; i < Count; i++)
             {
                 for (int j = 0; j < Count - 1 - i; j++)
                 {
                     if (this[j].CompareTo(this[j+1]) > 0)
                     {
-                        (this[j], this[j + 1]) = (this[j = 1], this[j]);
+                        (this[j], this[j + 1]) = (this[j + 1], this[j]);
                     }
                 }
             }
